@@ -1,0 +1,3 @@
+com\wpl\model\UserDetails.class
+com\wpl\tablemap\LoginDetails.class
+com\wpl\services\LoginService.class
