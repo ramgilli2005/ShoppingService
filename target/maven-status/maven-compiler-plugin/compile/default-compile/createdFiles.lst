@@ -1,3 +1,4 @@
+com/wpl/filter/RestAuthenticationFilter.class
+com/wpl/services/LoginService.class
 com/wpl/tablemap/LoginDetails.class
 com/wpl/model/UserDetails.class
-com/wpl/services/LoginService.class
