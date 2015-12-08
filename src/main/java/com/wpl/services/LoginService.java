@@ -23,7 +23,7 @@ public class LoginService {
 	
 	@RequestMapping(value="/checklogin", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserDetails checkLogin(@RequestBody UserDetails userDetails){
-		//Test for commit
+		//Test for commit1
 //		System.out.println(userDetails.getUserName());
 //		userDetails.setFirstName("It Works");
 		LoginDetails ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
