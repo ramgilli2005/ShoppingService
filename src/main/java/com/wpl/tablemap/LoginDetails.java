@@ -18,8 +18,8 @@ public class LoginDetails {
 	@Column(name="Status")
 	private String status;
 	
-	@Column(name="FirstName")
-	private String firstName;
+	@Column(name="Name")
+	private String name;
 
 	public String getUserName() {
 		return userName;
@@ -45,12 +45,14 @@ public class LoginDetails {
 		this.status = status;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
+
+
 
 }
