@@ -1,5 +1,6 @@
 package com.wpl.services;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,9 +22,12 @@ public class LoginService {
 	@Autowired
 	private SessionFactory sf;
 	
+	private static final Logger log = Logger.getLogger(LoginService.class);
+
 	@RequestMapping(value="/checklogin", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserDetails checkLogin(@RequestBody UserDetails userDetails){
 		
+		log.info("Inside checkLogin Service");
 //		System.out.println(userDetails.getUserName());
 		userDetails.setFirstName("It Works");
 		//LoginDetails ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
