@@ -27,12 +27,11 @@ public class LoginService {
 	@RequestMapping(value="/checklogin", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody UserDetails checkLogin(@RequestBody UserDetails userDetails){
 		
-		log.info("Inside checkLogin Service");
-//		System.out.println(userDetails.getUserName());
-		userDetails.setFirstName("It Works");
-		//LoginDetails ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
-		//userDetails.setStatus(ld.getStatus());
-		//userDetails.setFirstName(ld.getFirstName());
+		log.info("Inside checkLogin Service"+userDetails.getUserName());
+		//userDetails.setFirstName("It Works");
+		LoginDetails ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
+		userDetails.setStatus(ld.getStatus());
+		userDetails.setName(ld.getName());
 		return userDetails;
 	}
 }

@@ -8,7 +8,7 @@ public class UserDetails implements Serializable{
 	public String userName;
 	public String password;
 	public String status;
-	public String firstName;
+	public String name;
 	public UserDetails(){
 		
 	}
@@ -24,11 +24,11 @@ public class UserDetails implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public String getFirstName() {
-		return firstName;
+	public String getName() {
+		return name;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getPassword() {
 		return password;
