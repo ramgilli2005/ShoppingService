@@ -22,7 +22,7 @@ public class UserService {
 	@Autowired
 	private SessionFactory sf;
 	
-	private static final Logger log = Logger.getLogger(LoginService.class);
+	private static final Logger log = Logger.getLogger(UserService.class);
 
 	
 	@RequestMapping(value="/get", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)

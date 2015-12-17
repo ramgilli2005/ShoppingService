@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.wpl.model.UserDetails;
 import com.wpl.tablemap.LoginDetails;
 
+import net.spy.memcached.AddrUtil;
+import net.spy.memcached.MemcachedClient;
+
 @Controller
 @RequestMapping("/login")
 @Transactional
@@ -29,9 +32,25 @@ public class LoginService {
 		
 		log.info("Inside checkLogin Service"+userDetails.getUserName());
 		//userDetails.setFirstName("It Works");
-		LoginDetails ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
+		try{
+			
+		
+		MemcachedClient mc = new MemcachedClient(AddrUtil.getAddresses("127.0.0.1:11211"));
+
+		LoginDetails ld = (LoginDetails)mc.get(userDetails.getUserName());
+		if(ld != null){
+			log.info("Cache HIT");
+		} else{
+			log.info("Cache Miss");
+			ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
+			mc.set(userDetails.getUserName(), 3600, ld);
+		}
+			
 		userDetails.setStatus(ld.getStatus());
 		userDetails.setName(ld.getName());
+		} catch (Exception e){
+			e.printStackTrace();
+		}
 		return userDetails;
 	}
 }
