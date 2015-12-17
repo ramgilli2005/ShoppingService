@@ -14,37 +14,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.wpl.tablemap.PaymentDetails;
 import com.wpl.tablemap.PlaceOrder;
 
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("/payment")
 @Transactional
-public class OrderService {
+public class PaymentService {
 	@Autowired
 	private SessionFactory sf;
 	
 	private static final Logger log = Logger.getLogger(LoginService.class);
 
 	@RequestMapping(value="/save", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String saveOrder(@RequestBody PlaceOrder order){
+	public @ResponseBody String saveOrder(@RequestBody PaymentDetails pay){
 
-		log.info("Inside Order Service"+order.getProductId());
-		if(order.getOrderStatus() == null){
-			order.setOrderStatus("CONFIRMED");
+		log.info("Inside Payment Service"+pay.getOrderId());
+		
+		if(pay.getPaymentStatus() == null){
+			pay.setPaymentStatus("PAID");
 		}
-		String orderId = (String) sf.getCurrentSession().save(order);
+		sf.getCurrentSession().save(pay);
 		
-		return orderId;
+		return "Saved";
 	}
-	@RequestMapping(value="/get", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<PlaceOrder> getOrders(@RequestBody String userName){
-		userName = userName.trim();
-		log.info("Inside Get Order Service: "+userName);
-		
-		Query query = sf.getCurrentSession().createQuery("FROM PlaceOrder p WHERE p.userName='"+userName+"'");
-		List<PlaceOrder> orderList = query.list();
-		return orderList;
-	}
-
+	
 }

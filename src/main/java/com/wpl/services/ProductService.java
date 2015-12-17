@@ -37,11 +37,11 @@ public class ProductService {
 			Query query = sf.getCurrentSession().createQuery("FROM ProductDetails pd WHERE pd.productName like '%"+product.getProductName()+"%'" );
 			prod = query.list();
 		} 
-		if(product.getCategory() != null && product.getProductName() != null){
+		else if(product.getCategory() != null && product.getProductName() != null){
 			Query query = sf.getCurrentSession().createQuery("FROM ProductDetails pd WHERE pd.productName like '%"+product.getProductName()+"%' AND pd.category='"+ product.getCategory()+"'" );
 			prod = (query.list());
 		}
-		if(product.getCategory() == null && product.getProductName() == null){
+		else if(product.getCategory() == null && product.getProductName() == null){
 			Query query = sf.getCurrentSession().createQuery("FROM ProductDetails" );
 			prod = (query.list());
 		}
