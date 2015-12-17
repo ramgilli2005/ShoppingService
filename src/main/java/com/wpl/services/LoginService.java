@@ -43,7 +43,7 @@ public class LoginService {
 		} else{
 			log.info("Cache Miss");
 			ld = (LoginDetails) sf.getCurrentSession().get(LoginDetails.class, userDetails.getUserName());
-			mc.set(userDetails.getUserName(), 3600, ld);
+			mc.set(userDetails.getUserName(), 5, ld);
 		}
 			
 		userDetails.setStatus(ld.getStatus());
