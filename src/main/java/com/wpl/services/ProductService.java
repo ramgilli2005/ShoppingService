@@ -28,21 +28,21 @@ public class ProductService {
 	
 	private static final Logger log = Logger.getLogger(LoginService.class);
 
-	@RequestMapping(value="/search", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value="/search", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE, produces=MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<ProductDetails> checkLogin(@RequestBody Product product){
 		List<ProductDetails> prod = new ArrayList<>();
 		log.info("Inside Product Service"+product.getProductName());
 		if(product.getCategory() == null && product.getProductName() != null){
 			//Criteria cr = sf.getCurrentSession().createCriteria(ProductDetails.class);
-			Query query = sf.getCurrentSession().createQuery("FROM productdetails pd WHERE pd.ProductName like %"+product.getProductName()+"%" );
+			Query query = sf.getCurrentSession().createQuery("FROM ProductDetails pd WHERE pd.productName like '%"+product.getProductName()+"%'" );
 			prod = query.list();
 		} 
 		if(product.getCategory() != null && product.getProductName() != null){
-			Query query = sf.getCurrentSession().createQuery("FROM productdetails pd WHERE pd.ProductName like '%"+product.getProductName()+"%' AND pd.Category='"+ product.getCategory()+"'" );
+			Query query = sf.getCurrentSession().createQuery("FROM ProductDetails pd WHERE pd.productName like '%"+product.getProductName()+"%' AND pd.category='"+ product.getCategory()+"'" );
 			prod = (query.list());
 		}
 		if(product.getCategory() == null && product.getProductName() == null){
-			Query query = sf.getCurrentSession().createQuery("FROM productdetails" );
+			Query query = sf.getCurrentSession().createQuery("FROM ProductDetails" );
 			prod = (query.list());
 		}
 		log.info("Prod Size Service: "+prod.size());

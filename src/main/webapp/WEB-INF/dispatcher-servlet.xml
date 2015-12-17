@@ -62,6 +62,10 @@
 			<list>
 			<!-- Add DB Mapping Classes Here -->
 				<value>com.wpl.tablemap.LoginDetails</value>
+				<value>com.wpl.tablemap.PaymentDetails</value>
+				<value>com.wpl.tablemap.PlaceOrder</value>
+				<value>com.wpl.tablemap.ProductDetails</value>
+				<value>com.wpl.tablemap.Registration</value>
 			</list>
 		</property>
 	</bean>
