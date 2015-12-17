@@ -1,9 +1,6 @@
 package com.wpl.services;
 
-import java.util.List;
-
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.wpl.tablemap.PaymentDetails;
-import com.wpl.tablemap.PlaceOrder;
 
 
 @Controller

@@ -9,7 +9,7 @@
 		</layout>
 	</appender>
 	<appender name="rolling-file" class="org.apache.log4j.RollingFileAppender">
-		<param name="file" value="${catalina.home}/logs/ots.log" />
+		<param name="file" value="${catalina.home}/logs/ss.log" />
 		<param name="MaxFileSize" value="1024KB" />
 		<!-- Keep one backup file -->
 		<param name="MaxBackupIndex" value="3" />
